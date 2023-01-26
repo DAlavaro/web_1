@@ -1,0 +1,3 @@
+django-admin startproject hello  создание проекта Django с именем Hello
+python manage.py runserver  запуск проекта в текущей папке
+python manage.py startapp firstapp создание нового прилоежения с именем firstapp
