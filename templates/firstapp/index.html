@@ -5,10 +5,11 @@
     <title>Форма Django!</title>
 </head>
 <body>
-    <form method="POST">
+<h2>Форма как таблица</h2>
+    <form method="POST" novalidate>
         {% csrf_token %}
     <table>
-        {{form}}
+        {{ form.as_table }}
     </table>
     <input type="submit" value="Отправить">
 </body>

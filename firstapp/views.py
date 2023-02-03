@@ -6,13 +6,17 @@ from forms import UserForm
 
 # Create your views here.
 def index(request):
-    # if request.method == "POST":
-    #     name = request.POST.get("name") # получить значение поля Имя
-    #     age = request.POST.get("age") # Получить значение поля Возраст
-    #     output = "<h2> Пользователь </h2><h3>Имя - {0}, Возраст - {1}</h3>".format(name, age)
-    #     return HttpResponse(output)
-    # else:
-    userform = UserForm()
+    if request.method == "POST":
+        userform = UserForm(request.POST)
+        if userform.is_valid():
+            name = userform.cleaned_data['name']
+            return HttpResponse("<h2>имя введено корректно - {0}</h2>".format(name))
+        else:
+            return HttpResponse('Ошибка ввода данных')
+    else:
+        userform = UserForm()
+        return render(request, "firstapp/index.html", {"form": userform})
+
     return render(request, "firstapp/index.html", {"form": userform})
 
 
