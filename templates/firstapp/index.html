@@ -2,15 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Форма Django!</title>
+    <title>Модели в Django</title>
 </head>
-<body>
-<h2>Форма как таблица</h2>
-    <form method="POST" novalidate>
+<body class="container">
+    <form method="post" action="create/">
         {% csrf_token %}
+        <p>
+            <label>Введите имя</label><br>
+            <input type="text" name="name" />
+        </p>
+        <p>
+            <label>Введите возраст</label><br>
+            <input type="number" name="age" />
+        </p>
+        <input type="submit" value="Сохранить">
+    </form>
+    {% if people.count > 0 %}
+    <h2>Список пользователей</h2>
     <table>
-        {{ form.as_table }}
+        <tr><th>Id</th><th>Имя</th><th>Возраст</th></tr>
+        {% for person in people %}
+            <tr>
+                <td>{{person.id}}</td>
+                <td>{{person.name}}</td>
+                <td>{{person.age}}</td>
+            </tr>
+        {% endfor %}
     </table>
-    <input type="submit" value="Отправить">
+    {% endif %}
 </body>
 </html>
