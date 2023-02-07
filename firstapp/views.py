@@ -38,7 +38,7 @@ def edit(request, id_):
 # Удаление из базы данных
 def delete(request, id_):
     try:
-        person = Person.objects.get(od=id)
+        person = Person.objects.get(id=id_)
         person.delete()
         return HttpResponseRedirect("/")
     except Person.DoesNotExist:
